@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список товаров</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="tel:89924440244"><p>📞 позвонить</p></a>
+        <a href="https://yandex.by/maps/39/rostov-na-donu/house/ulitsa_nansena_103a/Z0AYcQdjQEACQFptfX51d39rYw==/?ll=39.703954%2C47.246387&z=16"><p>📍 на карте</p></a>
+    </div>
+
+    <h1>Палитры для акрилового камня от бренда GRANDEX</h1>
+    <div class="product-list" id="product-list"></div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <img id="modal-image" src="" alt="">
+            <div>
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-description" id="modal-description"></p>
+                <button id="close-modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="tel:89924440244"><p>📞 8(992)444-02-44</p></a>
+        <a href="https://yandex.by/maps/39/rostov-na-donu/house/ulitsa_nansena_103a/Z0AYcQdjQEACQFptfX51d39rYw==/?ll=39.703954%2C47.246387&z=16"></a><p>📍 Ростов-на-дону ул. Нансена 103а</p></a>
+        <p>📝 ИНН 236100287673</p>
+    </div>
+
+    <script>
+        const products = [
+            {
+                title: 'M728 Obsidian Soul',
+                image: 'https://interstone.su/media/images/1280/stones/GRANDEX/M-728/М-728-Obsidian-Soil_ZOOM.jpg',
+                description: 'Описание продукта M728 Obsidian Soul.'
+            },
+            {
+                title: 'М726 Ether Mist',
+                image: 'https://interstone.su/media/images/1280/stones/GRANDEX/M-726/M-726-Ethen-Mist_ZOOM%20%282%29.jpg',
+                description: 'Описание продукта М726 Ether Mist.'
+            },
+            {
+                title: 'М724 Cloud Concrete',
+                image: 'https://interstone.su/media/images/1280/stones/GRANDEX/M-724/М-724%20Cloud%20Concrete_ZOOM.jpg',
+                description: 'Описание продукта М724 Cloud Concrete.'
+            },
+            {
+                title: 'M798 Black Pearl',
+                image: 'https://interstone.su/media/images/1280/stones/GRANDEX/M-798/M-798-Black-Pearl_ZOOM.jpg',
+                description: 'Описание продукта M798 Black Pearl.'
+            },
+            {
+                title: 'M733 Stellar Depth',
+                image: 'https://interstone.su/media/images/1280/stones/GRANDEX/M-733/M-733%20Stellar%20Depth_ZOOM.jpg',
+                description: 'Описание продукта M733 Stellar Depth.'
+            },
+            {
+                title: 'M732 Marble Mirage',
+                image: 'https://interstone.su/media/images/1280/stones/GRANDEX/M-732/M-732%20Marble%20Mirage_ZOOM.jpg',
+                description: 'Описание продукта M732 Marble Mirage.'
+            }
+        ];
+
+        const productListElement = document.getElementById('product-list');
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const closeModal = document.getElementById('close-modal');
+
+        products.forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.className = 'product';
+
+            const imgElement = document.createElement('img');
+            imgElement.src = product.image;
+            imgElement.alt = product.title;
+
+            const titleElement = document.createElement('div');
+            titleElement.className = 'product-title';
+
+            titleElement.textContent = product.title;
+
+            productElement.appendChild(imgElement);
+            productElement.appendChild(titleElement);
+            productListElement.appendChild(productElement);
+
+            productElement.onclick = () => {
+                modal.style.display = 'flex';
+                modalImage.src = product.image;
+                modalTitle.textContent = product.title;
+                modalDescription.textContent = product.description;
+            };
+        });
+
+        closeModal.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+
+</body>
+
+</html>
